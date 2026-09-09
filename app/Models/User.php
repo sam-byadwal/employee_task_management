@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -18,11 +19,14 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
+      protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
+        'status',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -39,11 +43,31 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
-    protected function casts(): array
+   protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'status' => 'boolean',
         ];
     }
+
+    
+    public function tasks(): HasMany
+{
+    return $this->hasMany(Task::class, 'assigned_to');
+}
+
+public function createdTasks(): HasMany
+{
+    return $this->hasMany(Task::class, 'created_by');
+}
+
+public function comments(): HasMany
+{
+    return $this->hasMany(Comment::class);
+}
+
+
+
 }
