@@ -59,6 +59,9 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
+
+        
+
         $employee3 = User::updateOrCreate(
             [
                 'email' => 'employee3@example.com',
