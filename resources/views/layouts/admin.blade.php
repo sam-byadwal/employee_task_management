@@ -217,6 +217,8 @@
                     href="#"
                     class="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-slate-500 transition hover:bg-white/5 hover:text-slate-300"
                 > -->
+
+                
                 <a
     href="{{ route('admin.comments.index') }}"
     class="{{ request()->routeIs('admin.comments.*')

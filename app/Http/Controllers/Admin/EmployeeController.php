@@ -120,6 +120,8 @@ public function index(Request $request)
 {
     abort_unless($employee->role === 'employee', 404);
 
+
+    
     if ($employee->tasks()->exists()) { // check by this employe have any task or not 
         return redirect()
             ->route('admin.employees.index')
